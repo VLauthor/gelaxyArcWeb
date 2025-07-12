@@ -15,21 +15,30 @@ const texts = [
   "Коллаборируйте, координируйте и согласовывайте действия сотрудников — в цифровом пространстве. Прозрачность процессов. Синхронная работа.",
 ];
 
-export default function VoiceWaveCard() {
+export default function VoiceWaveCard({
+  active,
+  onHover,
+  onLeave,
+}: {
+  active: boolean;
+  onHover: (rect: DOMRect) => void;
+  onLeave: () => void;
+}) {
   const [current, setCurrent] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [typing, setTyping] = useState(true);
 
-  const intervalRef = useRef<any>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    if (!active) return;
     if (typing) {
       let i = 0;
       intervalRef.current = setInterval(() => {
         setDisplayed(texts[current].slice(0, i + 1));
         i++;
         if (i === texts[current].length) {
-          clearInterval(intervalRef.current);
+          clearInterval(intervalRef.current!);
           setTimeout(() => setTyping(false), 3000);
         }
       }, 35);
@@ -39,14 +48,18 @@ export default function VoiceWaveCard() {
         setDisplayed(texts[current].slice(0, i - 1));
         i--;
         if (i === 0) {
-          clearInterval(intervalRef.current);
+          if (intervalRef.current) clearInterval(intervalRef.current);
           setCurrent((prev) => (prev + 1) % texts.length);
           setTyping(true);
         }
       }, 18);
     }
-    return () => clearInterval(intervalRef.current);
-  }, [typing, current]);
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [typing, current, active]);
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -56,21 +69,40 @@ export default function VoiceWaveCard() {
 
   return (
     <motion.div className="border-white/10 p-10 shadow-2xl bg-gradient-to-b from-[#1a1b23ee] to-[#191a21ee] rounded-2xl w-3/4 max-w-full mx-auto h-2/4 flex flex-col items-center relative gap-0" variants={cardVariants}
-      initial="hidden"
-      animate="visible"
-      whileHover="hover">
+      animate={active ? "visible" : "hidden"}
+      whileHover="hover"
+      initial={{ opacity: 0, y: 0, scale: 1.0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: 0.05 }}
+      onMouseEnter={e => onHover(e.currentTarget.getBoundingClientRect())}
+      onMouseLeave={onLeave}
+    >
       <div className="absolute left-6 top-6 flex gap-2">
         <span className="w-3 h-3 rounded-full bg-[#FF5F56] shadow" />
         <span className="w-3 h-3 rounded-full bg-[#FFBD2E] shadow" />
         <span className="w-3 h-3 rounded-full bg-[#27C93F] shadow" />
       </div>
-      <h1 className="text-4xl font-bold">GalaxyArc</h1>
+      <motion.h1 className="text-4xl font-bold"
+        initial={{ opacity: 0, y: 0, scale: 1.0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: 0.05 }}
+        onMouseEnter={e => onHover(e.currentTarget.getBoundingClientRect())}
+        onMouseLeave={onLeave}
+      >GalaxyArc</motion.h1>
       <div className="flex flex-col items-center justify-start w-full h-full pt-3">
-        <div className="mb-14 text-left w-full h-2/6 ">
+        <motion.div className="mb-14 text-left w-full h-2/6 "
+          initial={{ opacity: 0, y: 0, scale: 1.0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.05 }}
+          onMouseEnter={e => onHover(e.currentTarget.getBoundingClientRect())}
+          onMouseLeave={onLeave}>
           <span className="text-lg text-gray-200 leading-snug font-medium flex text-center">
             {displayed}
           </span>
-        </div>
+        </motion.div>
         <VoiceWave />
       </div>
     </motion.div>

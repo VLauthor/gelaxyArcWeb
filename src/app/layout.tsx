@@ -8,8 +8,6 @@ import MiniDota from "@/components/test/MiniDota";
 const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
-  // Можно указать нужные веса, например
-  // weight: ["400", "700"],
 })
 
 export const metadata: Metadata = {

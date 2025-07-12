@@ -1,10 +1,11 @@
 "use client"
-import React, { useRef, useState, useLayoutEffect } from "react";
+import React, { useRef, useState, useLayoutEffect, JSX } from "react";
 import { BsPuzzle, BsChatDots, BsMouse } from "react-icons/bs";
 import { MdOutlineAnalytics, MdDescription } from "react-icons/md";
 import { FaRegMoneyBillAlt, FaUsers } from "react-icons/fa";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { TbSettingsAutomation } from "react-icons/tb";
+import { motion } from "framer-motion";
 
 type Feature = {
   icon: React.ReactNode;
@@ -15,25 +16,32 @@ type Feature = {
 
 const leftFeatures: Feature[] = [
   { icon: <FaUsers size={22} />, label: "Удобство", value: "Прямое взаимодействие", color: "from-[#3e7afe] to-[#a166ff]" },
-  { icon: <BsMouse size={22} />, label: "Связанность", value: "Централизованная система", color: "from-[#5dc7fe] to-[#8ecbfc]" },
+  { icon: <BsMouse size={22} />, label: "Связанность", value: "Централизованная система", color: "from-[#ff5858] to-[#f09819]" },
   { icon: <BsPuzzle size={22} />, label: "Легкость", value: "Удобная интеграция", color: "from-[#6ee7b7] to-[#3b82f6]" },
   { icon: <HiOutlineUserGroup size={22} />, label: "Безопасность", value: "Шифрование на каждом шаге", color: "from-[#f7971e] to-[#ffd200]" },
 ];
 const rightFeatures: Feature[] = [
   { icon: <MdDescription size={22} />, label: "Кроссплатформенность", value: "Web, iOS, Android", color: "from-[#a166ff] to-[#3e7afe]" },
-  { icon: <MdOutlineAnalytics size={22} />, label: "Поддержка", value: "24/7", color: "from-[#f9a8d4] to-[#f472b6]" },
+  { icon: <MdOutlineAnalytics size={22} />, label: "Поддержка", value: "24/7", color: "from-[#6ee7b7] to-[#3b82f6]" },
   { icon: <FaRegMoneyBillAlt size={22} />, label: "Обновляемость", value: "Автоматические апдейты", color: "from-[#ffd200] to-[#f7971e]" },
   { icon: <BsChatDots size={22} />, label: "Интерактивность", value: "Live-чат и боты", color: "from-[#ff5858] to-[#f09819]" },
 ];
 
-export default function ProductFeaturesBlock() {
+export default function ProductFeaturesBlock({
+  active,
+  onHover,
+  onLeave,
+}: {
+  active: boolean;
+  onHover: (rect: DOMRect) => void;
+  onLeave: () => void;
+}) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const centerRef = useRef<HTMLDivElement>(null);
   const leftRefs = useRef<Array<HTMLDivElement | null>>(Array(leftFeatures.length).fill(null));
   const rightRefs = useRef<Array<HTMLDivElement | null>>(Array(rightFeatures.length).fill(null));
   const [lines, setLines] = useState<JSX.Element[]>([]);
 
-  // Recalculate lines positions
   const updateLines = () => {
     if (!wrapperRef.current || !centerRef.current) return;
     const wrap = wrapperRef.current.getBoundingClientRect();
@@ -82,13 +90,14 @@ export default function ProductFeaturesBlock() {
   };
 
   useLayoutEffect(() => {
+    if (!active) return;
     updateLines();
     window.addEventListener('resize', updateLines);
     return () => window.removeEventListener('resize', updateLines);
-  }, []);
+  }, [active]);
 
   return (
-    <div className="flex w-screen h-screen items-center justify-center relative overflow-visible">"+"
+    <div className="flex w-screen h-screen items-center justify-center relative overflow-visible">
       <style jsx global>{`
         @keyframes flow {
           0% { stroke-dashoffset: 0; }
@@ -111,14 +120,35 @@ export default function ProductFeaturesBlock() {
         <div className="absolute right-[-120px] bottom-[-120px] w-[350px] h-[350px] bg-indigo-500 opacity-20 blur-3xl rounded-full" />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center w-full max-w-6xl rounded-2xl border border-white/10 p-10 shadow-2xl bg-gradient-to-b from-[#1a1b23ee] to-[#191a21ee]">
+      <motion.div className="relative z-10 flex flex-col items-center w-full max-w-6xl rounded-2xl border border-white/10 p-10 shadow-2xl bg-gradient-to-b from-[#1a1b23ee] to-[#191a21ee]"
+        initial={{ opacity: 0, y: 0, scale: 1.0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: 0.05 }}
+        onMouseEnter={e => onHover(e.currentTarget.getBoundingClientRect())}
+        onMouseLeave={onLeave}
+      >
         <div className="absolute left-6 top-6 flex gap-2">
           <span className="w-3 h-3 rounded-full bg-[#FF5F56] shadow" />
           <span className="w-3 h-3 rounded-full bg-[#FFBD2E] shadow" />
           <span className="w-3 h-3 rounded-full bg-[#27C93F] shadow" />
         </div>
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center drop-shadow-lg mb-2 node">Всё, что нужно — под рукой</h2>
-        <p className="text-base md:text-lg text-blue-100 text-center mb-10 node">Все функции для комфортной работы — в одном интерфейсе</p>
+        <motion.h2 className="text-3xl md:text-4xl font-bold text-white text-center drop-shadow-lg mb-2 node"
+          initial={{ opacity: 0, y: 20, scale: 1 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.05 }}
+          onMouseEnter={e => onHover(e.currentTarget.getBoundingClientRect())}
+          onMouseLeave={onLeave}
+        >Всё, что нужно — под рукой</motion.h2>
+        <motion.p className="text-base md:text-lg text-blue-100 text-center mb-10 node"
+          initial={{ opacity: 0, y: 20, scale: 1.2 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.05 }}
+          onMouseEnter={e => onHover(e.currentTarget.getBoundingClientRect())}
+          onMouseLeave={onLeave}
+        >Все функции для комфортной работы — в одном интерфейсе</motion.p>
 
         <div ref={wrapperRef} className="relative flex items-center justify-center w-full h-[390px] max-w-[930px]">
           <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
@@ -148,7 +178,14 @@ export default function ProductFeaturesBlock() {
             {lines}
           </svg>
 
-          <div ref={centerRef} className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 node">
+          <motion.div ref={centerRef} className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 node"
+            initial={{ opacity: 0, y: 20, scale: 1.2 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.05 }}
+            onMouseEnter={e => onHover(e.currentTarget.getBoundingClientRect())}
+            onMouseLeave={onLeave}
+          >
             <div className="relative w-[160px] h-[160px] flex items-center justify-center">
               <span className="absolute inset-0 rounded-full bg-gradient-to-br from-[#a77fff44] via-[#818cf8aa] to-[#432d92cc] blur-xl opacity-80" />
               <div className="relative z-10 w-[120px] h-[120px] flex flex-col items-center justify-center rounded-full bg-[#211f3c] shadow-lg border border-[#8a7aff66] node">
@@ -156,42 +193,50 @@ export default function ProductFeaturesBlock() {
                 <span className="text-xs text-blue-100 font-semibold mt-2">GalaxyArc</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           <div className="absolute left-0 top-0 h-full flex flex-col justify-between z-10">
             {leftFeatures.map((f, i) => (
-              <div
+              <motion.div
                 key={f.label}
-                ref={el => (leftRefs.current[i] = el)}
+                ref={el => { leftRefs.current[i] = el; }}
                 className={`node inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-br ${f.color} rounded-xl border border-white/10 shadow-md whitespace-nowrap transform transition-transform duration-200 `}
+                initial={{ opacity: 0, y: 20, scale: 1 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                onMouseEnter={e => onHover(e.currentTarget.getBoundingClientRect())}
+                onMouseLeave={onLeave}
               >
                 <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#161a2aee] text-white/80 shadow">{f.icon}</div>
                 <div className="flex flex-col">
                   <span className="font-semibold text-sm text-white">{f.label}</span>
                   <span className="text-xs text-white/70">{f.value}</span>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
           <div className="absolute right-0 top-0 h-full flex flex-col justify-between z-10">
             {rightFeatures.map((f, i) => (
-              <div
+              <motion.div
                 key={f.label}
-                ref={el => (rightRefs.current[i] = el)}
+                ref={el => { rightRefs.current[i] = el; }}
                 className={`node inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-br ${f.color} rounded-xl border border-white/10 shadow-md whitespace-nowrap transform transition-transform duration-200 justify-between`}
+                onMouseEnter={e => onHover(e.currentTarget.getBoundingClientRect())}
+                onMouseLeave={onLeave}
               >
                 <div className="flex flex-col">
                   <span className="font-semibold text-sm text-white">{f.label}</span>
                   <span className="text-xs text-white/70">{f.value}</span>
                 </div>
                 <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#161a2aee] text-white/80 shadow">{f.icon}</div>
-              </div>
+              </motion.div>
 
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
