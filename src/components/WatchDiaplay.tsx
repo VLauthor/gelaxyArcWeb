@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { BadgeInfo } from 'lucide-react';
 
 interface WatchDisplayProps {
-  items: Record<string, any>[];
+  items: Record<string, never>[];
   size?: number;
   itemSize?: number;
   label?: string

@@ -23,7 +23,7 @@ interface GalaxyProps {
 
 export const Galaxy: React.FC<GalaxyProps> = ({ children }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number>(null);
 
   // Инициализация звёзд
   const initStars = (w: number, h: number): Star[] =>
@@ -109,10 +109,10 @@ export const Galaxy: React.FC<GalaxyProps> = ({ children }) => {
 
     // ресайз canvas под tailwind-стили
     function handleResize() {
-      w = canvas.offsetWidth;
-      h = canvas.offsetHeight;
-      canvas.width = w * window.devicePixelRatio;
-      canvas.height = h * window.devicePixelRatio;
+      w = canvas!.offsetWidth;
+      h = canvas!.offsetHeight;
+      canvas!.width = w * window.devicePixelRatio;
+      canvas!.height = h * window.devicePixelRatio;
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
       stars = initStars(w, h);

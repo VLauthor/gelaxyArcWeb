@@ -63,7 +63,6 @@ export default function FeaturesGrid({
   active,
   onHover,
   onLeave,
-  mousePos,
 }: {
   active: boolean;
   onHover: (rect: DOMRect, viewFocus?: boolean, newContent?: boolean, handle?: () => void) => void;

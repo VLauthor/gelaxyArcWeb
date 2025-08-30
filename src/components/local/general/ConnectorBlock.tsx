@@ -2,9 +2,6 @@ import { motion } from 'framer-motion';
 
 export default function ConnectorBlock({
   active,
-  onHover,
-  onLeave,
-  mousePos,
 }: {
   active: boolean;
   onHover: (rect: DOMRect, viewFocus?: boolean, newContent?: boolean, handle?: () => void) => void;

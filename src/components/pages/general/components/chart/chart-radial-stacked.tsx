@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Label, PolarRadiusAxis, RadialBar, RadialBarChart } from "recharts"
+import { Label, PolarRadiusAxis, RadialBar, RadialBarChart } from "recharts";
 
 import {
   Card,
@@ -9,18 +9,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
-import LiquidGlassEffect from "@/components/liquid-glass-effect"
+} from "@/components/ui/chart";
 
-export const description = "A radial chart with stacked sections"
-
-
+export const description = "A radial chart with stacked sections";
 
 interface ChartRadialStackedProps {
   header?: {
@@ -31,19 +28,27 @@ interface ChartRadialStackedProps {
     title?: string
     description?: string
   }
-  chartData: object[]
+  chartData: Record<string, unknown>[]
   chartConfig: ChartConfig
   fields: string[]
   visitors?: string
 }
 
-export function ChartRadialStacked({ header, footer, chartConfig, chartData, fields, visitors }: ChartRadialStackedProps) {
+export function ChartRadialStacked({
+  header,
+  footer,
+  chartConfig,
+  chartData,
+  fields,
+  visitors,
+}: ChartRadialStackedProps) {
   const totalVisitors = fields.reduce((acc, field) => {
     const value = chartData.reduce((sum, item) => {
-      return sum + (item[field] || 0)
-    }, 0)
-    return acc + value
-  }, 0)
+      const item_I = item[field];
+      return sum + (typeof item_I == "number" ? item_I : 0);
+    }, 0);
+    return acc + value;
+  }, 0);
 
   return (
     <Card className="flex flex-col w-full h-full rounded-none bg-transparent gap-4 border-0">
@@ -78,7 +83,12 @@ export function ChartRadialStacked({ header, footer, chartConfig, chartData, fie
                 content={({ viewBox }) => {
                   if (viewBox && "cx" in viewBox && "cy" in viewBox) {
                     return (
-                      <text x={viewBox.cx} y={viewBox.cy} textAnchor="middle" className="">
+                      <text
+                        x={viewBox.cx}
+                        y={viewBox.cy}
+                        textAnchor="middle"
+                        className=""
+                      >
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) - 16}
@@ -94,13 +104,13 @@ export function ChartRadialStacked({ header, footer, chartConfig, chartData, fie
                           {visitors ?? "Всего"}
                         </tspan>
                       </text>
-                    )
+                    );
                   }
                 }}
               />
             </PolarRadiusAxis>
             {fields.map((field) => {
-              const fieldConfig = chartConfig[field]
+              const fieldConfig = chartConfig[field];
               return (
                 <RadialBar
                   key={field}
@@ -110,14 +120,16 @@ export function ChartRadialStacked({ header, footer, chartConfig, chartData, fie
                   cornerRadius={5}
                   className="stroke-transparent stroke-2"
                 />
-              )
+              );
             })}
           </RadialBarChart>
         </ChartContainer>
       </CardContent>
       {footer && (
         <CardFooter className="flex-col items-start">
-          <CardTitle className="text-lg font-semibold text-white">{footer.title}</CardTitle>
+          <CardTitle className="text-lg font-semibold text-white">
+            {footer.title}
+          </CardTitle>
           {footer.description && (
             <CardDescription className="text-sm text-muted-foreground text-[var(--foreground)]/90">
               {footer.description}
@@ -126,5 +138,5 @@ export function ChartRadialStacked({ header, footer, chartConfig, chartData, fie
         </CardFooter>
       )}
     </Card>
-  )
+  );
 }

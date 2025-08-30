@@ -18,7 +18,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { ChartConfig, ChartContainer } from "@/components/ui/chart"
-import { number } from "motion/react"
 
 export const description = "A radial chart with text"
 

@@ -264,14 +264,6 @@ export default function IdeaBlock() {
                         {b.desc}
                       </p>
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {(b.tags || ["новое", "популярное", "рекомендация"]).map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-xs px-2.5 py-1 rounded-full bg-[var(--foreground)]/10 text-[var(--foreground)]/70 border border-[var(--foreground)]/20 hover:bg-[var(--foreground)]/20 transition-colors"
-                          >
-                            {tag}
-                          </span>
-                        ))}
                       </div>
                     </div>
                     <motion.button

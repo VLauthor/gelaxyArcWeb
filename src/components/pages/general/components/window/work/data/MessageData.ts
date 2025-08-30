@@ -1,15 +1,15 @@
 import { User } from "lucide-react";
-import React from "react";
 import { defUsers } from "./Users";
 import { defFolders } from "./Folders";
 import { defChats } from "./Chats";
 import { defMessages } from "./Message";
+import { IconType } from "react-icons/lib";
 
 export interface Folder {
   id: number;
   title: string;
   url: string;
-  icon: React.ElementType;
+  icon: IconType;
   isActive: boolean;
   general?: boolean;
 }

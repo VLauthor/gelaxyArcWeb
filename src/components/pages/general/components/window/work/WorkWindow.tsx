@@ -10,14 +10,10 @@ import MessageRender from "./message-render";
 import { cn } from "@/lib/utils";
 import { defBlur, defBorder } from "@/components";
 import { motion } from "motion/react";
-import { Canvas } from "@react-three/fiber";
-import GlassSphere from "./test";
-import { MagicCard } from "@/components/magicui/magic-card";
-import useTheme from "@/use/useTheme"
 import LiquidGlassEffect from "@/components/liquid-glass-effect";
 
 export default function WorkWindow() {
-  const { theme } = useTheme();
+
   const [messages, setMessages] = React.useState<Message[]>([])
   const [users, setUsers] = React.useState<Record<number, User>>({})
   const messagesEndRef = React.useRef<HTMLDivElement>(null);

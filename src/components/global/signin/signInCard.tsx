@@ -46,7 +46,6 @@ const loginTypes: Record<LoginKeyType, LoginValueType> = {
 };
 
 import axios from 'axios';
-import GalaxySmile from "@/components/test/galaxy/galaxySmile"
 
 const loginUser = async (data: LoginForm, loginType: LoginKeyType) => {
   try {
@@ -128,7 +127,6 @@ export default function SignInCard() {
   };
   return (
     <Card className="flex w-full h-full flex-row mx-12 px-5">
-      <GalaxySmile type={smile} />
       <div className="flex w-full h-full flex-col items-center justify-center gap-8">
         <CardHeader className="flex items-center justify-center flex-col w-full">
           <CardTitle className="text-3xl">Авторизация</CardTitle>

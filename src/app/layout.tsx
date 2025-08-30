@@ -1,9 +1,5 @@
-// import { Pointer } from "@/components/magicui/pointer";
-import CustomCursor from "@/components/CustomCursor";
-import FluidGlass from "@/components/fluid-components";
 import GradualBlurMemo from "@/components/pages/general/components/gradual-blur";
 import { NavigationMenuGeneral } from "@/components/pages/general/components/NavBar/Navnar";
-import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 

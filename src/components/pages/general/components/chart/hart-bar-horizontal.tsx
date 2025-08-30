@@ -36,7 +36,7 @@ interface ChartBarHorizontalProps {
   detalicField: string
 }
 
-export function ChartBarHorizontal({ className, header, footer, chartConfig, chartData, lableField, detalicField }: ChartBarHorizontalProps) {
+export function ChartBarHorizontal({ header, footer, chartConfig, chartData, lableField, detalicField }: ChartBarHorizontalProps) {
   return (
     <div className="container mx-auto">
       <Card className="bg-transparent border-0 gap-2">

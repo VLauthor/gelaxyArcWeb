@@ -1,4 +1,3 @@
-import { image } from "motion/react-client";
 import { Message, User } from "./data/MessageData";
 import { defUsers } from "./data/Users";
 import Image from "next/image";
