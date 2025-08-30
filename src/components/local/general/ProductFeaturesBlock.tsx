@@ -116,11 +116,11 @@ export default function ProductFeaturesBlock({
       `}</style>
       {/* Background glows */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute left-[-120px] top-[-120px] w-[350px] h-[350px] bg-blue-500 opacity-20 blur-3xl rounded-full" />
-        <div className="absolute right-[-120px] bottom-[-120px] w-[350px] h-[350px] bg-indigo-500 opacity-20 blur-3xl rounded-full" />
+        <div className="absolute left-[-120px] top-[-120px] w-[450px] h-[550px] bg-blue-500 opacity-20 blur-3xl rounded-full" />
+        <div className="absolute right-[-120px] bottom-[-120px] w-[450px] h-[550px] bg-indigo-500 opacity-20 blur-3xl rounded-full" />
       </div>
 
-      <motion.div className="relative z-10 flex flex-col items-center w-full max-w-6xl rounded-2xl border border-white/10 p-10 shadow-2xl bg-gradient-to-b from-[#1a1b23ee] to-[#191a21ee]"
+      <motion.div className="relative z-10 flex flex-col items-center w-full max-w-6xl rounded-2xl border-1 border-white/10 p-10 shadow-2xl bg-white/15 backdrop-blur-xs"
         initial={{ opacity: 0, y: 0, scale: 1.0 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -128,11 +128,6 @@ export default function ProductFeaturesBlock({
         onMouseEnter={e => onHover(e.currentTarget.getBoundingClientRect())}
         onMouseLeave={onLeave}
       >
-        <div className="absolute left-6 top-6 flex gap-2">
-          <span className="w-3 h-3 rounded-full bg-[#FF5F56] shadow" />
-          <span className="w-3 h-3 rounded-full bg-[#FFBD2E] shadow" />
-          <span className="w-3 h-3 rounded-full bg-[#27C93F] shadow" />
-        </div>
         <motion.h2 className="text-3xl md:text-4xl font-bold text-white text-center drop-shadow-lg mb-2 node"
           initial={{ opacity: 0, y: 20, scale: 1 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -140,7 +135,7 @@ export default function ProductFeaturesBlock({
           transition={{ duration: 0.4, delay: 0.05 }}
           onMouseEnter={e => onHover(e.currentTarget.getBoundingClientRect())}
           onMouseLeave={onLeave}
-        >Всё, что нужно — под рукой</motion.h2>
+        >Наш проект - единая система</motion.h2>
         <motion.p className="text-base md:text-lg text-blue-100 text-center mb-10 node"
           initial={{ opacity: 0, y: 20, scale: 1.2 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -148,7 +143,7 @@ export default function ProductFeaturesBlock({
           transition={{ duration: 0.4, delay: 0.05 }}
           onMouseEnter={e => onHover(e.currentTarget.getBoundingClientRect())}
           onMouseLeave={onLeave}
-        >Все функции для комфортной работы — в одном интерфейсе</motion.p>
+        >Мы придерживаемся единой концепции нашего проекта для вашего удобства и безопасности</motion.p>
 
         <div ref={wrapperRef} className="relative flex items-center justify-center w-full h-[390px] max-w-[930px]">
           <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">

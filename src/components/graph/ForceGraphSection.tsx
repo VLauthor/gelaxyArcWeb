@@ -68,7 +68,7 @@ export default function VoiceWaveCard({
   };
 
   return (
-    <motion.div className="border-white/10 p-10 shadow-2xl bg-gradient-to-b from-[#1a1b23ee] to-[#191a21ee] rounded-2xl w-3/4 max-w-full mx-auto h-2/4 flex flex-col items-center relative gap-0" variants={cardVariants}
+    <motion.div className="p-10 shadow-2xl bg-white/15 backdrop-blur-2xl rounded-2xl w-3/4 max-w-full mx-auto h-2/4 flex flex-col items-center relative gap-0 border-white/10 border-1" variants={cardVariants}
       animate={active ? "visible" : "hidden"}
       whileHover="hover"
       initial={{ opacity: 0, y: 0, scale: 1.0 }}
@@ -78,11 +78,6 @@ export default function VoiceWaveCard({
       onMouseEnter={e => onHover(e.currentTarget.getBoundingClientRect())}
       onMouseLeave={onLeave}
     >
-      <div className="absolute left-6 top-6 flex gap-2">
-        <span className="w-3 h-3 rounded-full bg-[#FF5F56] shadow" />
-        <span className="w-3 h-3 rounded-full bg-[#FFBD2E] shadow" />
-        <span className="w-3 h-3 rounded-full bg-[#27C93F] shadow" />
-      </div>
       <motion.h1 className="text-4xl font-bold"
         initial={{ opacity: 0, y: 0, scale: 1.0 }}
         whileInView={{ opacity: 1, y: 0 }}

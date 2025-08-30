@@ -1,9 +1,11 @@
+// import { Pointer } from "@/components/magicui/pointer";
+import CustomCursor from "@/components/CustomCursor";
+import FluidGlass from "@/components/fluid-components";
+import GradualBlurMemo from "@/components/pages/general/components/gradual-blur";
+import { NavigationMenuGeneral } from "@/components/pages/general/components/NavBar/Navnar";
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import "./globals.css";
-import { NavigationMenuGeneral } from "@/components/local/general/header";
-import MonopolyGame from "@/components/test/mono";
-import MiniDota from "@/components/test/MiniDota";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -25,9 +27,25 @@ export default function RootLayout({
       <body
         className={`${roboto.variable} ${roboto.variable} antialiased flex flex-col items-center`}
       >
-        <NavigationMenuGeneral />
-        {children}
+        <div style={{ height: '100%', overflowY: 'auto', padding: '' }}>
+
+
+          <NavigationMenuGeneral />
+          {/* <CustomCursor
+            spinDuration={2}
+            hideDefaultCursor={true}
+          /> */}
+          {/* <SmoothCursor /> */}
+          {/* <Pointer className="fill-[var(--ring)]" /> */}
+          {children}
+        </div>
+        <GradualBlurMemo
+          className="z-50"
+          height="2rem"
+          curve="ease-in-out"
+          target="page"
+        />
       </body>
-    </html>
+    </html >
   );
 }

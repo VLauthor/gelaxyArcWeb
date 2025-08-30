@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" style={{ display: "flex" }}>
+  <filter id="distort">
+    <!-- Турбулентность с более крупным шумом -->
+    <feTurbulence 
+      type="turbulence" 
+      baseFrequency="0.08" 
+      numOctaves="3" 
+      seed="2" 
+      result="turb"
+    >
+      <!-- Анимация частоты для "оживления" -->
+      <animate 
+        attributeName="baseFrequency" 
+        dur="4s" 
+        values="0.08;0.15;0.08" 
+        repeatCount="indefinite" 
+      />
+    </feTurbulence>
+    <!-- Сильнее смещаем пиксели -->
+    <feDisplacementMap 
+      in="SourceGraphic" 
+      in2="turb" 
+      scale="50" 
+      xChannelSelector="R" 
+      yChannelSelector="G" 
+    />
+  </filter>
+</svg>

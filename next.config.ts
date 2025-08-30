@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   async headers() {
     return [
       {
@@ -26,6 +25,25 @@ const nextConfig: NextConfig = {
         ],
       },
     ];
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "blog.tcea.org",
+        pathname: "/wp-content/**",
+      },
+      {
+        protocol: "https",
+        hostname: "telegram.org",
+        pathname: "/img/**",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.ruwiki.ru",
+        pathname: "/ruwiki/**",
+      },
+    ],
   },
 };
 

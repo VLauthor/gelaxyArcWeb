@@ -68,7 +68,7 @@
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
+  --sidebar: oklch(1 0 0);
   --sidebar-foreground: oklch(0.141 0.005 285.823);
   --sidebar-primary: oklch(0.623 0.214 259.815);
   --sidebar-primary-foreground: oklch(0.97 0.014 254.604);
@@ -76,6 +76,9 @@
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.623 0.214 259.815);
+  --notif-important: oklch(65.488% 0.20433 15.461);
+  --notif-medium: oklch(76.088% 0.14246 59.166);
+  --notif-light: oklch(85.294% 0.20858 149.795);
 }
 
 .dark {
@@ -102,7 +105,7 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.21 0.006 285.885);
+  --sidebar: oklch(0.141 0.005 285.823);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.546 0.245 262.881);
   --sidebar-primary-foreground: oklch(0.379 0.146 265.522);
@@ -110,6 +113,9 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.488 0.243 264.376);
+  --notif-important: oklch(65.488% 0.20433 15.461);
+  --notif-medium: oklch(76.088% 0.14246 59.166);
+  --notif-light: oklch(85.294% 0.20858 149.795);
 }
 
 @layer base {
@@ -119,4 +125,42 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* для WebKit-браузеров (Chrome, Safari, Edge) */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* для Firefox */
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.glass {
+  overflow: hidden;
+  content: "";
+  inset: 0;
+  background: inherit;
+  backdrop-filter: blur(40px) saturate(120%) brightness(120%) grayscale(10%)
+    hue-rotate(-15deg) opacity(85%);
+  backface-visibility: hidden;
+  box-shadow: 0 25px 50px -12px rgba(255, 255, 255, 0.01);
+  z-index: calc(1 * -1);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+.backdrop-blur-glass {
+  --tw-backdrop-blur: blur(1.5px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur);
+  backdrop-filter: var(--tw-backdrop-blur);
+}
+
+.your-element {
+  filter: url(#my-filter);
 }

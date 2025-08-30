@@ -1,0 +1,277 @@
+import { Message } from "./MessageData";
+
+export const defMessages: Record<number, Message[]> = {
+  201: [
+    {
+      id: 1,
+      chatId: 201,
+      date: new Date("2025-08-20T09:00:00"),
+      text: "Привет! Кто сегодня купит продукты?",
+      userUid: 17,
+      objects: {},
+      detalic: {
+        reaction: [{ emogiUid: 1, usersUIDs: [18, 19] }],
+        viewUsers: [17, 18, 19, 20],
+        replyUid: undefined,
+      },
+    },
+    {
+      id: 2,
+      chatId: 202,
+      date: new Date("2025-08-20T09:05:00"),
+      text: "Я могу зайти вечером 🛒",
+      userUid: 18,
+      objects: {},
+      detalic: {
+        reaction: [{ emogiUid: 2, usersUIDs: [17] }],
+        viewUsers: [17, 18, 19],
+        replyUid: 1,
+      },
+    },
+    {
+      id: 3,
+      chatId: 202,
+      date: new Date("2025-08-20T09:10:00"),
+      text: undefined,
+      userUid: 19,
+      objects: {
+        images: [1001, 1002],
+      },
+      detalic: {
+        reaction: [{ emogiUid: 3, usersUIDs: [17, 18] }],
+        viewUsers: [17, 18, 19, 20],
+        replyUid: undefined,
+      },
+    },
+    {
+      id: 4,
+      chatId: 202,
+      date: new Date("2025-08-20T09:15:00"),
+      text: "Может устроим шашлыки на выходных?",
+      userUid: 17,
+      objects: {
+        survey: {
+          uid: 501,
+          type: "survey",
+          question: "Поедем на шашлыки в субботу?",
+          multiAnsfer: false,
+          private: false,
+          answers: [
+            { uid: 1, text: "Да", reply: { userUIDs: [17, 19] } },
+            { uid: 2, text: "Нет", reply: { userUIDs: [20] } },
+          ],
+        },
+      },
+      detalic: {
+        reaction: [],
+        viewUsers: [17, 18, 19, 20],
+        replyUid: undefined,
+      },
+    },
+    {
+      id: 5,
+      chatId: 202,
+      date: new Date("2025-08-20T09:20:00"),
+      text: "Я за! 🔥",
+      userUid: 19,
+      objects: {},
+      detalic: {
+        reaction: [{ emogiUid: 4, usersUIDs: [18] }],
+        viewUsers: [17, 18, 19],
+        replyUid: 4,
+      },
+    },
+    {
+      id: 6,
+      chatId: 202,
+      date: new Date("2025-08-20T09:25:00"),
+      text: undefined,
+      userUid: 20,
+      objects: {
+        taskBoard: {
+          uid: 601,
+          title: "Список покупок",
+          private: false,
+          tasks: [
+            { uid: 1, text: "Хлеб", reply: { userUIDs: [17] } },
+            { uid: 2, text: "Молоко", reply: { userUIDs: [18, 19] } },
+            { uid: 3, text: "Яйца", reply: { userUIDs: [] } },
+          ],
+        },
+      },
+      detalic: {
+        reaction: [],
+        viewUsers: [17, 18, 19, 20],
+        replyUid: undefined,
+      },
+    },
+    {
+      id: 7,
+      chatId: 202,
+      date: new Date("2025-08-20T09:30:00"),
+      text: "Фото с прогулки 🌳",
+      userUid: 18,
+      objects: { images: [1003] },
+      detalic: {
+        reaction: [],
+        viewUsers: [17, 18, 19],
+        replyUid: undefined,
+      },
+    },
+    {
+      id: 8,
+      chatId: 202,
+      date: new Date("2025-08-20T09:35:00"),
+      text: undefined,
+      userUid: 19,
+      objects: {
+        geo: [55.751244, 37.618423],
+      },
+      detalic: {
+        reaction: [],
+        viewUsers: [17, 18, 19, 20],
+        replyUid: undefined,
+      },
+    },
+    {
+      id: 9,
+      chatId: 202,
+      date: new Date("2025-08-20T09:40:00"),
+      text: "Кто приготовит суп сегодня?",
+      userUid: 17,
+      objects: {},
+      detalic: {
+        reaction: [{ emogiUid: 5, usersUIDs: [18, 20] }],
+        viewUsers: [17, 18, 19, 20],
+        replyUid: undefined,
+      },
+    },
+    {
+      id: 10,
+      chatId: 202,
+      date: new Date("2025-08-20T09:45:00"),
+      text: "Я могу",
+      userUid: 20,
+      objects: {},
+      detalic: {
+        reaction: [],
+        viewUsers: [17, 18, 19, 20],
+        replyUid: 9,
+      },
+    },
+    {
+      id: 11,
+      chatId: 202,
+      date: new Date("2025-08-20T09:50:00"),
+      text: undefined,
+      userUid: 18,
+      objects: {
+        files: [2001, 2002],
+      },
+      detalic: {
+        reaction: [],
+        viewUsers: [17, 18, 19, 20],
+        replyUid: undefined,
+      },
+    },
+    {
+      id: 12,
+      chatId: 202,
+      date: new Date("2025-08-20T09:55:00"),
+      text: "Ссылка на рецепт супа: https://example.com",
+      userUid: 17,
+      objects: {},
+      detalic: {
+        reaction: [{ emogiUid: 6, usersUIDs: [18, 19] }],
+        viewUsers: [17, 18, 19],
+        replyUid: 11,
+      },
+    },
+    {
+      id: 13,
+      chatId: 202,
+      date: new Date("2025-08-20T10:00:00"),
+      text: "Давайте соберёмся вечером за фильмом 🎬",
+      userUid: 19,
+      objects: {},
+      detalic: {
+        reaction: [],
+        viewUsers: [17, 18, 19, 20],
+        replyUid: undefined,
+      },
+    },
+    {
+      id: 14,
+      chatId: 202,
+      date: new Date("2025-08-20T10:05:00"),
+      text: undefined,
+      userUid: 20,
+      objects: {
+        video: [3001],
+      },
+      detalic: {
+        reaction: [{ emogiUid: 7, usersUIDs: [17, 19] }],
+        viewUsers: [17, 18, 19, 20],
+        replyUid: 13,
+      },
+    },
+    {
+      id: 15,
+      chatId: 202,
+      date: new Date("2025-08-20T10:10:00"),
+      text: "Кто идёт в парк после обеда?",
+      userUid: 17,
+      objects: {},
+      detalic: {
+        reaction: [],
+        viewUsers: [17, 18, 19, 20],
+        replyUid: undefined,
+      },
+    },
+    {
+      id: 16,
+      chatId: 202,
+      date: new Date("2025-08-20T10:15:00"),
+      text: undefined,
+      userUid: 18,
+      objects: {
+        survey: {
+          uid: 502,
+          type: "quiz",
+          question: "Какая активность будет интереснее?",
+          multiAnsfer: true,
+          private: false,
+          answers: [
+            { uid: 1, text: "Прогулка", bool: true, reply: { userUIDs: [18] } },
+            {
+              uid: 2,
+              text: "Велосипед",
+              bool: true,
+              reply: { userUIDs: [19] },
+            },
+            { uid: 3, text: "Футбол", bool: false, reply: { userUIDs: [] } },
+          ],
+        },
+      },
+      detalic: {
+        reaction: [],
+        viewUsers: [17, 18, 19, 20],
+        replyUid: 15,
+      },
+    },
+    {
+      id: 17,
+      chatId: 202,
+      date: new Date("2025-08-20T10:20:00"),
+      text: "Не забудьте зонтики 🌂",
+      userUid: 19,
+      objects: {},
+      detalic: {
+        reaction: [{ emogiUid: 8, usersUIDs: [17, 20] }],
+        viewUsers: [17, 18, 19, 20],
+        replyUid: 16,
+      },
+    },
+    // ... можно продолжить до 40 сообщений
+  ],
+};
